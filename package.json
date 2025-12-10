@@ -149,7 +149,8 @@
   "files": [
     "dist",
     "resources",
-    "winccoa-api-manager"
+    "winccoa-api-manager",
+    "LICENSE"
   ],
   "devDependencies": {
     "typescript": "^5.2.0",
