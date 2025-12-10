@@ -2,7 +2,7 @@
   "name": "winccoa-sidepanel",
   "displayName": "WinCC OA Sidepanel",
   "publisher": "RichardJanisch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "winccoa-tools-pack",
   "license": "MIT",
   "description": "Tree view panels for WinCC OA system and manager monitoring",
@@ -99,13 +99,13 @@
         },
         {
           "command": "winccoa.openConfig",
-          "when": "view == winccoa.systemView",
-          "group": "navigation@1"
+          "when": "view == winccoa.consoleView",
+          "group": "navigation@2"
         },
         {
           "command": "winccoa.openLogViewer",
-          "when": "view == winccoa.systemView",
-          "group": "navigation@2"
+          "when": "view == winccoa.consoleView",
+          "group": "navigation@3"
         }
       ],
       "view/item/context": [

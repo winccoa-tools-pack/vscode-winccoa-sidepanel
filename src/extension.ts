@@ -60,6 +60,8 @@ export function activate(context: vscode.ExtensionContext) {
     // Open Config command
     context.subscriptions.push(
         vscode.commands.registerCommand('winccoa.openConfig', async () => {
+            ExtensionOutputChannel.show();
+            ExtensionOutputChannel.info('Open Config command executed');
             const projectInfo = await ProjectInfoService.getProjectInfo();
             
             if (projectInfo && projectInfo.configPath) {
@@ -84,21 +86,26 @@ export function activate(context: vscode.ExtensionContext) {
     // Open Log Viewer command
     context.subscriptions.push(
         vscode.commands.registerCommand('winccoa.openLogViewer', async () => {
-            const logViewerExtension = vscode.extensions.getExtension('RichardJanisch.winccoa-logviewer');
+            ExtensionOutputChannel.show();
+            ExtensionOutputChannel.info('Open Log Viewer command executed');
+            const logViewerExtension = vscode.extensions.getExtension('richardjanisch.winccoa-vscode-logviewer');
             
             if (logViewerExtension) {
                 // Log Viewer extension is installed, execute its command
-                await vscode.commands.executeCommand('winccoa.logviewer.open');
+                ExtensionOutputChannel.info('Log Viewer extension found, opening...');
+                await vscode.commands.executeCommand('winccoa-logviewer.open');
                 ExtensionOutputChannel.info('Opened Log Viewer');
             } else {
                 // Extension not installed, show message with install link
+                ExtensionOutputChannel.warning('Log Viewer extension not installed');
                 const selection = await vscode.window.showInformationMessage(
                     'WinCC OA Log Viewer extension is not installed.',
                     'Install Extension'
                 );
                 
                 if (selection === 'Install Extension') {
-                    vscode.env.openExternal(vscode.Uri.parse('vscode:extension/RichardJanisch.winccoa-logviewer'));
+                    ExtensionOutputChannel.info('Opening VS Code Marketplace to install Log Viewer extension...');
+                    await vscode.env.openExternal(vscode.Uri.parse('vscode:extension/richardjanisch.winccoa-vscode-logviewer'));
                 }
             }
         })
@@ -164,6 +171,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     ExtensionOutputChannel.success('All commands registered successfully');
+    ExtensionOutputChannel.info('Commands: reloadCtrlLibs, openConfig, openLogViewer, startManager, stopManager, restartManager, startOASystem, stopOASystem, restartOASystem');
 }
 
 export function deactivate() {
