@@ -50,6 +50,16 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "winccoa.openConfig",
+        "title": "Open Config",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "winccoa.openLogViewer",
+        "title": "Open Log Viewer",
+        "icon": "$(output)"
+      },
+      {
         "command": "winccoa.startManager",
         "title": "Start Manager",
         "icon": "$(play)"
@@ -86,6 +96,16 @@
           "command": "winccoa.reloadCtrlLibs",
           "when": "view == winccoa.consoleView",
           "group": "navigation@1"
+        },
+        {
+          "command": "winccoa.openConfig",
+          "when": "view == winccoa.systemView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "winccoa.openLogViewer",
+          "when": "view == winccoa.systemView",
+          "group": "navigation@2"
         }
       ],
       "view/item/context": [
@@ -150,7 +170,8 @@
     "dist",
     "resources",
     "winccoa-api-manager",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "devDependencies": {
     "typescript": "^5.2.0",
