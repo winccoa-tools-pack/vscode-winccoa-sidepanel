@@ -1,179 +1,139 @@
-# WinCC OA VS Code Extension Template
+# WinCC OA Sidepanel
 
-Minimal starter template for creating VS Code extensions for WinCC OA with Git Flow workflow.
+<div align="center">
 
-## 🚀 Quick Start
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![VS Code](https://img.shields.io/badge/VS%20Code-^1.106.3-007ACC.svg)
 
-### Initial Setup
+**Monitor and control your WinCC OA Project directly from Visual Studio Code**
 
-1. **Create repository from this template**
+⚠️ *Pre-Release Version - Not all features have been fully tested yet*
 
-   ```bash
-   # Via GitHub CLI
-   gh repo create winccoa-tools-pack/<your-extension-name> \
-     --template winccoa-tools-pack/template-vscode-extension \
-     --public
-   ```
+</div>
 
-2. **Clone and initialize Git Flow**
+---
 
-   ```bash
-   git clone https://github.com/winccoa-tools-pack/<your-extension-name>
-   cd <your-extension-name>
-   
-   # Run the setup script (PowerShell)
-   .\setup-gitflow.ps1
-   
-   # Or manually
-   git flow init -d
-   git push -u origin develop
-   ```
+## ✨ Features
 
-3. **Install dependencies and build**
+### 📊 System Monitoring
+Real-time monitoring of your WinCC OA system:
+- **System Status View** - Check if your WinCC OA system is online or offline
+- **Project Information** - View project name, version, and API endpoint
+- **Project Explorer** - Quick access to main project and subprojects
 
-   ```bash
-   npm install
-   npm run compile
-   npm test
-   ```
+### 🎮 Manager Control
+Full control over WinCC OA managers:
+- **Manager List View** - See all managers with their status (running/stopped)
+- **Start/Stop/Restart** - Control individual managers via context menu
+- **Live Status Updates** - Automatic polling for manager state changes
+- **PID and Options Display** - See process IDs and manager options at a glance
 
-## 🌳 Git Flow Workflow
+### ⚡ Quick Actions
+- **Refresh CTRL Libraries** - Reload libraries with one click
+- **System Control** - Start, stop, or restart the entire WinCC OA system
+- **Right-click Context Menus** - Quick access to all actions
 
-This template uses [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) for branch management:
+---
 
-### Branch Structure
+## 🚀 Getting Started
 
-- **`main`** - Production-ready code (stable releases)
-- **`develop`** - Integration branch (pre-release features)
-- **`feature/*`** - New features
-- **`release/*`** - Release preparation
-- **`hotfix/*`** - Emergency fixes for production
+### Installation
+1. Open VS Code
+2. Go to Extensions (`Ctrl+Shift+X`)
+3. Search for "WinCC OA Sidepanel"
+4. Click Install
 
-### Common Commands
+### Prerequisites
+This extension requires the **WinCC OA REST API** to be running. The API provides manager control and system information endpoints.
 
-```bash
-# Start a new feature
-git flow feature start my-feature
+**Important:** The REST API is available in a separate repository and must be started as a CTRL manager in your running WinCC OA project. Once the API manager is running, this extension can connect to it and provide full system monitoring and manager control capabilities.
 
-# Finish feature (merges to develop)
-git flow feature finish my-feature
+### Configuration
 
-# Start a release
-git flow release start 1.0.0
+Configure the API endpoint and polling interval in VS Code settings:
 
-# Finish release (merges to main and develop, creates tag)
-git flow release finish 1.0.0
+---
 
-# Hotfix for production
-git flow hotfix start 1.0.1
-git flow hotfix finish 1.0.1
-```
+## ⚙️ Settings
 
-### Branch Protection
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `winccoa.sidepanel.apiEndpoint` | `http://localhost:3000` | WinCC OA REST API endpoint for manager control |
+| `winccoa.sidepanel.pollInterval` | `3000` | Manager status polling interval in milliseconds |
 
-The `setup-gitflow.ps1` script applies protection rules:
+---
 
-- **main**: Requires PR reviews, status checks, no force pushes
-- **develop**: Requires PR reviews, status checks, allows force pushes (for rebasing)
+## 📋 Usage
 
-## 🔐 VS Code Marketplace Publishing Setup
+### System View
+1. Click on the **WinCC OA** icon in the Activity Bar
+2. Expand the **System** section to see:
+   - System status (Online/Offline)
+   - Project Information (name, version, API endpoint)
+   - Projects (main project and subprojects)
+3. Right-click on system status for Start/Stop/Restart actions
 
-To enable automatic publishing to the VS Code Marketplace when creating releases, you need to configure a Personal Access Token:
+### Console View
+1. Click on the **WinCC OA** icon in the Activity Bar
+2. Expand the **Console** section to see all managers
+3. Right-click on any manager to:
+   - Start the manager
+   - Stop the manager
+   - Restart the manager
+4. Use the refresh button to reload CTRL libraries
 
-### Why VSCE_PAT is Required
+---
 
-The `release.yml` workflow automatically publishes your extension to the VS Code Marketplace when you merge a release PR to `main`. This requires authentication with Azure DevOps.
+## 🛠️ Requirements
 
-### How to Get a Personal Access Token
+- Visual Studio Code 1.80.0 or higher
+- WinCC OA installation with REST API running
+- Valid WinCC OA project
+- **WinCC OA REST API Manager** - Must be started as a CTRL manager in your project (available in separate repository)
 
-1. **Go to Azure DevOps**
-   - Navigate to: <https://dev.azure.com>
+---
 
-2. **Create Personal Access Token**
-   - Click on your profile → **Personal access tokens**
-   - Click **+ New Token**
-   - Name: `VS Code Marketplace Publishing`
-   - Organization: **All accessible organizations**
-   - Expiration: Choose appropriate duration
-   - Scopes: **Marketplace** → **Manage** (check the box)
-   - Click **Create**
-   - **Copy the token** (you won't see it again!)
+## ⚠️ Known Limitations
 
-3. **Add Token to Repository**
-   - Go to your GitHub repository settings
-   - Navigate to **Settings** → **Secrets and variables** → **Actions**
-   - Click **"New repository secret"**
-   - Name: `VSCE_PAT`
-   - Value: Paste your Personal Access Token
-   - Click **"Add secret"**
+- Requires WinCC OA REST API Manager to be running (available in separate repository)
+- API must be started as CTRL manager in your WinCC OA project before using this extension
+- No automatic reconnection if API connection is lost (requires manual refresh)
+- Limited error feedback when API is not reachable
 
-### Publisher Setup
+---
 
-You also need a publisher account on the VS Code Marketplace:
+## 📜 Disclaimer
 
-1. **Create Publisher**
-   - Go to <https://marketplace.visualstudio.com/manage>
-   - Click **Create publisher**
-   - Fill in publisher details (ID, name, etc.)
-   - Your publisher ID should match the `publisher` field in `package.json`
+WinCC OA and Siemens are trademarks of Siemens AG. This project is not affiliated with, endorsed by, or sponsored by Siemens AG. This is a community-driven open source project created to enhance the development experience for WinCC OA developers.
 
-2. **Update package.json**
+---
 
-   ```json
-   {
-     "publisher": "your-publisher-id",
-     "name": "your-extension-name"
-   }
-   ```
+## 🤝 Contributing
 
-### Testing Without VSCE_PAT
+Contributions are welcome! Whether you want to:
+- Report bugs or issues
+- Suggest new features
+- Improve documentation
+- Submit code improvements
 
-If `VSCE_PAT` is not configured, the workflow will:
+Please open an issue or submit a pull request on [GitHub](https://github.com/winccoa-tools-pack/vscode-winccoa-sidepanel).
 
-- ✅ Still run tests and build the extension
-- ✅ Create GitHub releases with VSIX files
-- ⚠️ Skip Marketplace publishing with a warning message
+---
 
-You can always publish manually later:
+## 🔗 Links
 
-```bash
-vsce publish
-```
+- [GitHub Repository](https://github.com/winccoa-tools-pack/vscode-winccoa-sidepanel)
+- [Issue Tracker](https://github.com/winccoa-tools-pack/vscode-winccoa-sidepanel/issues)
+- [WinCC OA Documentation](https://www.winccoa.com)
 
-## 📦 Development
+---
 
-```bash
-# Install dependencies
-npm install
+<div align="center">
 
-# Compile TypeScript
-npm run compile
+Made with ❤️ for the WinCC OA community
 
-# Watch mode (auto-compile on changes)
-npm run watch
-
-# Run tests
-npm test
-
-# Package extension (.vsix file)
-npm run package
-
-# Run lint
-npm run lint
-```
-
-## 🎯 Testing Your Extension
-
-Press `F5` in VS Code to open a new Extension Development Host window with your extension loaded.
-
-## 🏆 Recognition
-
-Special thanks to all our [contributors](https://github.com/orgs/winccoa-tools-pack/people) who make this project possible!
-
-### Key Contributors
-
-- **Martin Pokorny** ([@mPokornyETM](https://github.com/mPokornyETM)) - Creator & Lead Developer
-- And many more amazing contributors!
+</div>
 
 ---
 
