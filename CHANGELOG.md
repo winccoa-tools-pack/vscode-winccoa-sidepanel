@@ -5,3 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Toolbar buttons in Console view for quick access (Open Config, Open LogViewer)
+- Automatic output channel display when toolbar buttons are clicked
+- Integration with WinCC OA LogViewer extension
+- Logging when opening VS Code Marketplace for extension installation
+
+## [0.1.0] - 2025-12-10
+
+### Added
+- Initial release
+- System view for WinCC OA project monitoring
+- Console view for manager monitoring and control
+- Real-time status updates via REST API integration
+- Manager control commands (Start, Stop, Restart)
+- System control commands (Start, Stop, Restart)
+- CTRL Library reload functionality
+- Project information display
+- Configuration file quick access
+
