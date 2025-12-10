@@ -1,18 +1,142 @@
 {
-  "name": "winccoa-vscode-extension",
-  "displayName": "WinCC OA Tools (template)",
-  "publisher": "winccoa-tools-pack",
+  "name": "winccoa-sidepanel",
+  "displayName": "WinCC OA Sidepanel",
+  "publisher": "RichardJanisch",
   "version": "0.1.0",
   "author": "winccoa-tools-pack",
   "license": "MIT",
+  "description": "Tree view panels for WinCC OA system and manager monitoring",
+  "icon": "resources/sidebar_industrial_calm_128.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/winccoa-tools-pack/vscode-winccoa-sidepanel"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "winccoa-explorer",
+          "title": "WinCC OA",
+          "icon": "resources/winccoa-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "winccoa-explorer": [
+        {
+          "id": "winccoa.systemView",
+          "name": "System"
+        },
+        {
+          "id": "winccoa.consoleView",
+          "name": "Console"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "winccoa.reloadCtrlLibs",
+        "title": "Reload CTRL Libraries",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "winccoa.startManager",
+        "title": "Start Manager",
+        "icon": "$(play)"
+      },
+      {
+        "command": "winccoa.stopManager",
+        "title": "Stop Manager",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "winccoa.restartManager",
+        "title": "Restart Manager",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "winccoa.startOASystem",
+        "title": "Start WinCC OA System",
+        "icon": "$(play)"
+      },
+      {
+        "command": "winccoa.stopOASystem",
+        "title": "Stop WinCC OA System",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "winccoa.restartOASystem",
+        "title": "Restart WinCC OA System",
+        "icon": "$(debug-restart)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "winccoa.reloadCtrlLibs",
+          "when": "view == winccoa.consoleView",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "winccoa.startOASystem",
+          "when": "view == winccoa.systemView && viewItem == systemStatus",
+          "group": "system@1"
+        },
+        {
+          "command": "winccoa.stopOASystem",
+          "when": "view == winccoa.systemView && viewItem == systemStatus",
+          "group": "system@2"
+        },
+        {
+          "command": "winccoa.restartOASystem",
+          "when": "view == winccoa.systemView && viewItem == systemStatus",
+          "group": "system@3"
+        },
+        {
+          "command": "winccoa.startManager",
+          "when": "view == winccoa.consoleView && viewItem == manager",
+          "group": "manager@1"
+        },
+        {
+          "command": "winccoa.stopManager",
+          "when": "view == winccoa.consoleView && viewItem == manager",
+          "group": "manager@2"
+        },
+        {
+          "command": "winccoa.restartManager",
+          "when": "view == winccoa.consoleView && viewItem == manager",
+          "group": "manager@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "WinCC OA Sidepanel",
+      "properties": {
+        "winccoa.sidepanel.apiEndpoint": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "WinCC OA REST API endpoint for manager control"
+        },
+        "winccoa.sidepanel.pollInterval": {
+          "type": "number",
+          "default": 3000,
+          "description": "Manager status polling interval in milliseconds"
+        }
+      }
+    }
+  },
   "scripts": {
     "build": "tsc --build",
     "compile": "tsc --build",
@@ -22,6 +146,12 @@
     "package": "vsce package",
     "vscode:prepublish": "npm run compile"
   },
+  "files": [
+    "dist",
+    "resources",
+    "winccoa-api-manager",
+    "LICENSE"
+  ],
   "devDependencies": {
     "typescript": "^5.2.0",
     "@types/vscode": "^1.80.0",
