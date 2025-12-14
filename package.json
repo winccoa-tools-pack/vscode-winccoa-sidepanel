@@ -153,6 +153,19 @@
           "type": "number",
           "default": 3000,
           "description": "Manager status polling interval in milliseconds"
+        },
+        "winccoaSidepanel.logLevel": {
+          "type": "string",
+          "enum": ["ERROR", "WARN", "INFO", "DEBUG", "TRACE"],
+          "default": "INFO",
+          "description": "Log level for the extension output channel",
+          "enumDescriptions": [
+            "Only show critical errors",
+            "Show errors and warnings",
+            "Show errors, warnings, and general information (recommended)",
+            "Show detailed debugging information",
+            "Show all possible logging information (very verbose)"
+          ]
         }
       }
     }
