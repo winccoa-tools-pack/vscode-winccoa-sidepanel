@@ -194,6 +194,6 @@
     "@vscode/vsce": "^3.7.1",
     "@vscode/test-electron": "^2.3.9",
     "mocha": "^11.7.5",
-    "glob": "^13.0.0"
+    "glob": "^13.0.3"
   }
 }
