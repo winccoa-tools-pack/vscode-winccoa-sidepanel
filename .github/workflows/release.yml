@@ -21,7 +21,7 @@ jobs:
             github.event_name == 'workflow_dispatch' ||
             (github.event.pull_request.merged == true &&
              (startsWith(github.head_ref, 'release/') || contains(github.event.pull_request.labels.*.name, 'release')))
-        uses: winccoa-tools-pack/.github/workflows/reusable-release.yml@main
+        uses: winccoa-tools-pack/.github/.github/workflows/reusable-release.yml@main
         with:
             target_branch: main
             project_type: vscode
