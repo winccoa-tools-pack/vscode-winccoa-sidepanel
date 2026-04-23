@@ -139,9 +139,9 @@ Made with ❤️ for the WinCC OA community
 
 ## 📜 License
 
-This project is basically licensed under the **MIT License** - see the [LICENSE](https://github.com/winccoa-tools-pack/.github/blob/main/LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](https://github.com/winccoa-tools-pack/.github/blob/main/LICENSE) file for details.
 
-It might happens, that the partial repositories contains third party SW which are using other license models.
+Some repositories may contain third-party software under different license terms.
 
 ---
 
