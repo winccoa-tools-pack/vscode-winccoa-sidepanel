@@ -2,9 +2,9 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![VS Marketplace](https://img.shields.io/visual-studio-marketplace/v/RichardJanisch.winccoa-sidepanel?label=VS%20Marketplace)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![VS Code](https://img.shields.io/badge/VS%20Code-^1.106.3-007ACC.svg)
+![VS Code](https://img.shields.io/badge/VS%20Code-%5E1.110.0-007ACC.svg)
 
 **Monitor and control your WinCC OA Project directly from Visual Studio Code**
 
@@ -87,7 +87,7 @@ Configure the API endpoint and polling interval in VS Code settings:
 
 ## 🛠️ Requirements
 
-- Visual Studio Code 1.80.0 or higher
+- Visual Studio Code 1.110.0 or higher
 - WinCC OA installation with REST API running
 - Valid WinCC OA project
 - **WinCC OA REST API Manager** - Must be started as a CTRL manager in your project (available in separate repository)
