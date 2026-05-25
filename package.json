@@ -193,7 +193,7 @@
     "@types/mocha": "^10.0.6",
     "@vscode/vsce": "^3.7.1",
     "@vscode/test-electron": "^2.3.9",
-    "mocha": "^11.7.5",
+    "mocha": "^11.7.6",
     "glob": "^13.0.6"
   }
 }
